@@ -4,13 +4,22 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'folder/Inbox',
+    redirectTo: 'calculadoras',
     pathMatch: 'full'
   },
   {
-    path: 'folder/:id',
-    loadChildren: () => import('./folder/folder.module').then( m => m.FolderPageModule)
-  }
+    path: 'calculadoras',
+    loadChildren: () => import('./pages/Navegacao/calculadoras/calculadoras.module').then( m => m.CalculadorasPageModule)
+  },
+  {
+    path: 'favoritos',
+    loadChildren: () => import('./pages/Navegacao/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./pages/Navegacao/login/login.module').then( m => m.LoginPageModule)
+  },
+
 ];
 
 @NgModule({
@@ -19,4 +28,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
