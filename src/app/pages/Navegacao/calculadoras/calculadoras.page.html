@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="azulclaro">
     <ion-title>Calculadoras</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -8,6 +8,9 @@
   <ion-list>
     <ion-item *ngFor="let medicamento of Medicamentos">
       <ion-label>{{medicamento.Medicamento}}</ion-label>
+      <ion-icon name="star-outline" color="amarelo" (click)="favorito = !favorito" *ngIf="favorito"></ion-icon>
+      <ion-icon name="star" color="amarelo" (click)="favorito = !favorito" *ngIf="!favorito"></ion-icon>
     </ion-item>
+
   </ion-list>
 </ion-content>
