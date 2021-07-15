@@ -19,6 +19,14 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./pages/Navegacao/login/login.module').then( m => m.LoginPageModule)
   },
+  {
+    path: 'cadastro-usuario',
+    loadChildren: () => import('./pages/Navegacao/cadastro-usuario/cadastro-usuario.module').then( m => m.CadastroUsuarioPageModule)
+  },
+  {
+    path: 'esqueceu-senha',
+    loadChildren: () => import('./pages/Navegacao/esqueceu-senha/esqueceu-senha.module').then( m => m.EsqueceuSenhaPageModule)
+  },
 
 ];
 
