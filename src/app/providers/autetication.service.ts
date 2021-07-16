@@ -16,13 +16,26 @@ export class AuteticationService {
 
 
   login(Usuario: string, Senha: string) {
-    // return this.auth.signInWithEmailAndPassword(Usuario, Senha);
+    return this.auth.signInWithEmailAndPassword(Usuario, Senha);
   }
   cadastrarNovoUsuario(Nome: string, Sobrenome: string, Email: string, Senha: string) {
     return this.auth.createUserWithEmailAndPassword(Email, Senha);
   }
   cadastrarUsuarioNoBanco(ID: string, Nome: string, Sobrenome: string, Email: string) {
     return this._db.list("Usuarios").push(new Usuario({ ID: ID, Nome: Nome, Email: Email, Sobrenome: Sobrenome })).catch(x => { console.error(x) })
+  }
+
+  enviarEmailSenha(Email:string){
+    return this.auth.sendPasswordResetEmail(Email);
+  }
+
+  setLocalUser(Usuario: Usuario) {
+    localStorage.setItem("User", JSON.stringify(Usuario));
+  }
+
+  sair() {
+    this.auth.signOut();
+    localStorage.removeItem("User");
   }
 
 
