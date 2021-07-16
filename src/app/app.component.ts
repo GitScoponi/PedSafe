@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Medicamentos } from './Models/medicamentos.model';
+import { Medicamentos } from './models/medicamentos.model';
 import { CalculadorasService } from './providers/calculadoras.service';
 @Component({
   selector: 'app-root',

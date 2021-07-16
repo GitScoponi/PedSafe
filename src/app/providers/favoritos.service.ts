@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
-import { Favoritos } from '../Models/favoritos.model';
+import { Favoritos } from '../models/favoritos.model';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 @Injectable({

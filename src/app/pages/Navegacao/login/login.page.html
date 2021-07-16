@@ -1,7 +1,6 @@
-<ion-content color='azul'>
+<ion-content color="azul">
   <ion-card color="light">
     <ion-card-content>
-
       <form [formGroup]="Formulario" novalidate class="example-form" (ngSubmit)="logar()">
         <ion-grid>
           <ion-row>
@@ -15,13 +14,14 @@
               <mat-form-field class="w-100">
                 <mat-label>Password</mat-label>
                 <input type="password" matInput formControlName="Password" [errorStateMatcher]="matcher">
-                <!-- <mat-error *ngIf="Email.hasError('email') && !Email..hasError('required')">
-                  E-mail inválido!
+                <!-- <mat-error *ngIf="validacao('Password')?.required">
+                  Nome obrigatório
                 </mat-error> -->
               </mat-form-field>
             </ion-col>
             <ion-col size="12" class="text-center">
-              <ion-button color="azulclaro" class="w-100" type="submit" [disabled]="!Formulario.valid">Logar</ion-button>
+              <ion-button color="azulclaro" class="w-100" type="submit" [disabled]="!Formulario.valid">Entrar
+              </ion-button>
               <a (click)="esqueceuSenha()" class=".ion-color-azulclaro">Esqueceu a senha?</a>
             </ion-col>
 
@@ -32,7 +32,8 @@
   </ion-card>
 </ion-content>
 <ion-footer>
-  <ion-toolbar color="azul" class="text-center">
-    <span> Não possui conta ainda? <a (click)="cadastrarUsuario()" class="azulclaro">Cadastre-se</a></span>
+  <ion-toolbar color="azulclaro" class="text-center">
+    <span style="font-size:17px"> Não possui conta ainda? <a
+        (click)="cadastrarUsuario()"><strong>Cadastre-se</strong></a></span>
   </ion-toolbar>
 </ion-footer>

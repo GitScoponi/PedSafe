@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from '@angular/fire/database';
-import { Medicamentos } from '../Models/medicamentos.model';
+import { Medicamentos } from '../models/medicamentos.model';
 
 @Injectable({
   providedIn: 'root'

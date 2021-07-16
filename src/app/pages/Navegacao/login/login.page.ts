@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MenuController, NavController } from '@ionic/angular';
-import { MyErrorStateMatcher } from 'src/app/Models/my-error-state-matcher';
+import { MyErrorStateMatcher } from 'src/app/models/my-error-state-matcher';
+import { FgService } from 'src/app/providers/fg.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginPage implements OnInit {
     private _ctrl: NavController,
     private _fb: FormBuilder,
     private auth: AngularFireAuth,
+    private _fg: FgService
   ) {
 
   }
@@ -38,10 +40,18 @@ export class LoginPage implements OnInit {
     var form = this.Formulario
     if (form.valid)
       this.auth.signInWithEmailAndPassword(form.value.Usuario, form.value.Password).then(x => {
-        this._ctrl.navigateForward(['/calculadoras']);
-        this.menu.enable(true);
-        console.log("login", x);
-      })
+        if (x.user.emailVerified) {
+          this._ctrl.navigateRoot(['/calculadoras']);
+          this.menu.enable(true)
+        }
+        else{
+          this._fg.AlertaErro("Usuário ou senha incorretos")
+
+        }
+      },
+        e => {
+          this._fg.AlertaErro("Usuário ou senha incorretos")
+        })
   }
   cadastrarUsuario() {
     this._ctrl.navigateForward(['/cadastro-usuario']);
@@ -55,6 +65,12 @@ export class LoginPage implements OnInit {
     this._ctrl.navigateForward(['/esqueceu-senha']);
 
   }
+
+  validacao(controls: string) {
+    return this.Formulario.controls[controls]?.errors;
+  }
+
+
 
 
 }

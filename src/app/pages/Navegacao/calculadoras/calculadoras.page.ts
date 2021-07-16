@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuController } from '@ionic/angular';
 import { CalculadorasService } from 'src/app/providers/calculadoras.service';
 
 @Component({
@@ -9,8 +10,8 @@ import { CalculadorasService } from 'src/app/providers/calculadoras.service';
 export class CalculadorasPage implements OnInit {
 
   Medicamentos: any = [];
-  favorito:boolean = false
-  constructor(private _calculadoras: CalculadorasService) {
+  favorito: boolean = false
+  constructor(private _calculadoras: CalculadorasService, private menu: MenuController) {
     _calculadoras.getAll().subscribe(x => {
       this.Medicamentos = x;
     },

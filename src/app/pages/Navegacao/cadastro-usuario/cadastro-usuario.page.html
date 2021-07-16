@@ -1,9 +1,74 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>CadastroUsuario</ion-title>
+  <ion-toolbar color="azul">
+    <ion-buttons slot="start">
+      <ion-back-button text="voltar"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<ion-content>
-
+<ion-content color="azul">
+  <ion-card color="light">
+    <ion-card-header>
+      <ion-card-title class="text-center">Novo usuário</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="Formulario" novalidate class="example-form" (ngSubmit)="enviarFormulario()">
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <mat-form-field class="w-100">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="Nome" [errorStateMatcher]="matcher">
+                <mat-error *ngIf="validacao('Nome')?.required">
+                  Nome obrigatório
+                </mat-error>
+              </mat-form-field>
+            </ion-col>
+            <ion-col size="12">
+              <mat-form-field class="w-100">
+                <mat-label>Sobrenome</mat-label>
+                <input matInput formControlName="Sobrenome" [errorStateMatcher]="matcher">
+                <mat-error *ngIf="validacao('Sobrenome')?.required">
+                  Sobrenome obrigatório
+                </mat-error>
+              </mat-form-field>
+            </ion-col>
+            <ion-col size="12">
+              <mat-form-field class="w-100">
+                <mat-label>E-mail</mat-label>
+                <input matInput formControlName="Email" [errorStateMatcher]="matcher">
+                <mat-error *ngIf="validacao('Email')?.required">
+                  E-mail obrigatório
+                </mat-error>
+                <mat-error *ngIf="validacao('Email')?.email">
+                  E-mail inválido
+                </mat-error>
+              </mat-form-field>
+            </ion-col>
+            <ion-col size="12">
+              <mat-form-field class="w-100">
+                <mat-label>Senha</mat-label>
+                <input type="password" matInput formControlName="Senha" [errorStateMatcher]="matcher">
+                <mat-error *ngIf="validacao('Senha')?.required">
+                  Senha obrigatória
+                </mat-error>
+              </mat-form-field>
+            </ion-col>
+            <ion-col size="12">
+              <mat-form-field class="w-100">
+                <mat-label>Confirmar senha</mat-label>
+                <input type="password" matInput formControlName="Senha2" [errorStateMatcher]="matcher">
+                <mat-error *ngIf="validacao('Senha2')?.equalTo ">
+                  As senhas não são correspondentes
+                </mat-error>
+              </mat-form-field>
+            </ion-col>
+            <ion-col size="12" class="text-center">
+              <ion-button color="azulclaro" class="w-100" type="submit" [disabled]="!Formulario.valid">Cadastrar
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
