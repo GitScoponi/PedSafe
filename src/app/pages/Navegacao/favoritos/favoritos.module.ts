@@ -7,14 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { FavoritosPageRoutingModule } from './favoritos-routing.module';
 
 import { FavoritosPage } from './favoritos.page';
+import { CallbackPipe } from 'src/app/pipes/filter.pipe';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    FavoritosPageRoutingModule
-  ],
-  declarations: [FavoritosPage]
+  imports: [CommonModule, FormsModule, IonicModule, FavoritosPageRoutingModule],
+
+  declarations: [FavoritosPage, CallbackPipe],
 })
 export class FavoritosPageModule {}
