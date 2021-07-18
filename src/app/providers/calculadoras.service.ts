@@ -9,7 +9,7 @@ export class CalculadorasService {
   constructor(private db: AngularFireDatabase) { }
 
   getAll() {
-    return this.db.list('Medicamentos').valueChanges()
+    return this.db.list<Medicamentos>('Medicamentos').valueChanges()
   }
   get(key: string) {
     return this.db.list('Medicamentos/' + key).valueChanges();

@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { element } from 'protractor';
+import { concatMap, map } from 'rxjs/operators';
 import { Medicamentos } from 'src/app/models/medicamentos.model';
+import { AuteticationService } from 'src/app/providers/autetication.service';
 import { CalculadorasService } from 'src/app/providers/calculadoras.service';
 import { FavoritosService } from 'src/app/providers/favoritos.service';
+import { FgService } from 'src/app/providers/fg.service';
 
 @Component({
   selector: 'app-calculadoras',
@@ -10,29 +13,47 @@ import { FavoritosService } from 'src/app/providers/favoritos.service';
   styleUrls: ['./calculadoras.page.scss'],
 })
 export class CalculadorasPage implements OnInit {
-
   Medicamentos: any = [];
-  favorito: boolean = false
-  constructor(private _calculadoras: CalculadorasService, private _favoritos: FavoritosService) {
-  }
+  Favoritos: any = [];
+  favorito: boolean = false;
+  constructor(
+    private _calculadoras: CalculadorasService,
+    private _favoritos: FavoritosService,
+    private _auth: AuteticationService,
+    private _fg: FgService
+  ) {}
   ngOnInit() {
-    this._calculadoras.getAll().pipe(
-      map(x =>
-        map(
-          (y: any) => new Medicamentos(
-            {
-              Codigo: y.Codigo,
-              Medicamento: y.Medicamento
+    this.atualizar();
+  }
+  atualizar() {
+    this._calculadoras.getAll().subscribe(
+      (calc) => {
+        this.Medicamentos = calc;
+        this.atualizarFavoritos();
+      },
+      (e) => {
+        this._fg.fbCath(e.code, e.message);
+      }
+    );
+  }
+  atualizarFavoritos() {
+    this._favoritos.getAll
+      .then((fav) => {
+        fav.forEach((elementF) => {
+          this.Medicamentos.forEach((elementM) => {
+            if (elementF.IDCalculadora == elementM.Codigo) {
+              elementM.Favorito = true;
             }
-          )
-        )
-      )
-    ).subscribe(x => {
-      this.Medicamentos = x;
-    },
-      e => {
-
+          });
+        });
       })
+      .catch((e) => {
+        console.log(e);
+      });
   }
 
+  favoritar(medicamento: Medicamentos) {
+    medicamento.Favorito = !medicamento.Favorito;
+    this._favoritos.Favoritar(medicamento.Codigo);
+  }
 }

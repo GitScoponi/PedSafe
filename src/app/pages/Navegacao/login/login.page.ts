@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MenuController, NavController } from '@ionic/angular';
 import { MyErrorStateMatcher } from 'src/app/models/my-error-state-matcher';
+import { Usuario } from 'src/app/models/usuario.model';
 import { AuteticationService } from 'src/app/providers/autetication.service';
 import { FgService } from 'src/app/providers/fg.service';
 
@@ -41,6 +42,7 @@ export class LoginPage implements OnInit {
       this._auth.login(form.value.Usuario, form.value.Password).then(
         (x) => {
           if (x.user.emailVerified) {
+            this._auth.setLocalUser(new Usuario({ID:x.user.uid}));
             this._ctrl.navigateRoot(['/calculadoras']);
             this.menu.enable(true);
           } else {
