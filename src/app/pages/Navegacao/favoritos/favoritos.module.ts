@@ -8,10 +8,11 @@ import { FavoritosPageRoutingModule } from './favoritos-routing.module';
 
 import { FavoritosPage } from './favoritos.page';
 import { CallbackPipe } from 'src/app/pipes/filter.pipe';
+import { OrderPipe } from 'src/app/pipes/order.pipe';
 
 @NgModule({
   imports: [CommonModule, FormsModule, IonicModule, FavoritosPageRoutingModule],
 
-  declarations: [FavoritosPage, CallbackPipe],
+  declarations: [FavoritosPage, CallbackPipe,OrderPipe],
 })
 export class FavoritosPageModule {}

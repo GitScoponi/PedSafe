@@ -50,32 +50,30 @@ export class CadastroUsuarioPage implements OnInit {
     if (this.Formulario.valid) {
       var form = this.Formulario.value;
 
-      this._autenticao
-        .cadastrarNovoUsuario(form.Nome, form.Sobrenome, form.Email, form.Senha)
-        .then(
-          (x) => {
-            this._autenticao.cadastrarUsuarioNoBanco(
-              x.user.uid,
-              form.Nome,
-              form.Sobrenome,
-              form.Email
-            );
-            x.user.sendEmailVerification();
-            // this._fg.AlertaSucesso(
-            //   'Para acesso ao Pedsafe é necessario a confirmação do e-mail!'
-            // );
-            this._fg.AlertaConfirmacao(
-              'Confirmação do e-mail',
-              'Seu acesso será liberado assim que seu e-mail for confirmado!',
-              () => {
-                this._ctrl.navigateBack(['/login']);
-              }
-            );
-          },
-          (e) => {
-            this._fg.fbCath(e.code, e.message);
-          }
-        );
+      this._autenticao.cadastrarNovoUsuario(form.Nome, form.Sobrenome).then(
+        (x) => {
+          this._autenticao.cadastrarUsuarioNoBanco(
+            x.user.uid,
+            form.Nome,
+            form.Sobrenome,
+            form.Email
+          );
+          x.user.sendEmailVerification();
+          // this._fg.AlertaSucesso(
+          //   'Para acesso ao Pedsafe é necessario a confirmação do e-mail!'
+          // );
+          this._fg.AlertaConfirmacao(
+            'Confirmação do e-mail',
+            'Seu acesso será liberado assim que seu e-mail for confirmado!',
+            () => {
+              this._ctrl.navigateBack(['/login']);
+            }
+          );
+        },
+        (e) => {
+          this._fg.fbCath(e.code, e.message);
+        }
+      );
     }
   }
 

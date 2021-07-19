@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let medicamento of Medicamentos | callback:filtrarFavoritos">
+    <ion-item *ngFor="let medicamento of Medicamentos | callback:filtrarFavoritos | order:'Medicamento'">
       <ion-label  >{{medicamento.Medicamento |  titlecase}}</ion-label>
     </ion-item>
   </ion-list>

@@ -22,20 +22,11 @@ export class AuteticationService {
   login(Usuario: string, Senha: string) {
     return this.auth.signInWithEmailAndPassword(Usuario, Senha);
   }
-  cadastrarNovoUsuario(
-    Nome: string,
-    Sobrenome: string,
-    Email: string,
-    Senha: string
-  ) {
+  cadastrarNovoUsuario(Email: string, Senha: string) {
     return this.auth.createUserWithEmailAndPassword(Email, Senha);
   }
-  cadastrarUsuarioNoBanco(
-    ID: string,
-    Nome: string,
-    Sobrenome: string,
-    Email: string
-  ) {
+  // prettier-ignore
+  cadastrarUsuarioNoBanco(ID: string,Nome: string,Sobrenome: string,Email: string) {
     return this._db
       .list('Usuarios')
       .push(

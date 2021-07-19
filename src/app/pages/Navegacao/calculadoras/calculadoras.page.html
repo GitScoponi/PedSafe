@@ -9,8 +9,8 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let medicamento of Medicamentos">
-      <ion-label>{{medicamento.Medicamento |  titlecase}}</ion-label>
+    <ion-item *ngFor="let medicamento of Medicamentos | order:'Medicamento'">
+      <ion-label (click)="irParaCalculadora(medicamento.Medicamento)">{{medicamento.Medicamento |  titlecase}}</ion-label>
       <ion-icon name="star-outline" color="amarelo" (click)="favoritar(medicamento)" *ngIf="!medicamento?.Favorito"></ion-icon>
       <ion-icon name="star" color="amarelo" (click)="favoritar(medicamento)" *ngIf="medicamento?.Favorito"></ion-icon>
     </ion-item>

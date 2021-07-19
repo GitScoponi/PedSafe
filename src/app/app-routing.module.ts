@@ -27,6 +27,10 @@ const routes: Routes = [
     path: 'esqueceu-senha',
     loadChildren: () => import('./pages/Navegacao/esqueceu-senha/esqueceu-senha.module').then( m => m.EsqueceuSenhaPageModule)
   },
+  {
+    path: 'medicamento',
+    loadChildren: () => import('./pages/Navegacao/medicamentos/medicamentos.module').then( m => m.MedicamentosPageModule)
+  },
 
 ];
 

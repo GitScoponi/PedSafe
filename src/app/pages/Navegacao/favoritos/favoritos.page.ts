@@ -33,7 +33,6 @@ export class FavoritosPage implements OnInit {
       }
     );
   }
-
   favoritar(medicamento: Medicamentos) {
     medicamento.Favorito = !medicamento.Favorito;
     this._calculadoras.Favoritar(medicamento.Codigo);

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { element } from 'protractor';
 import { concatMap, map } from 'rxjs/operators';
 import { Favoritos } from 'src/app/models/favoritos.model';
@@ -19,7 +20,8 @@ export class CalculadorasPage implements OnInit {
   constructor(
     private _calculadoras: CalculadorasService,
     private _auth: AuteticationService,
-    private _fg: FgService
+    private _fg: FgService,
+    private _nav: NavController
   ) {}
   ngOnInit() {
     this.atualizar();
@@ -35,10 +37,14 @@ export class CalculadorasPage implements OnInit {
       }
     );
   }
-  
 
   favoritar(medicamento: Medicamentos) {
     medicamento.Favorito = !medicamento.Favorito;
     this._calculadoras.Favoritar(medicamento.Codigo);
+  }
+  irParaCalculadora(calculador: string) {
+    this._nav.navigateForward(['/medicamento/' + calculador], {
+      queryParams: { 'medicamento': calculador },
+    });
   }
 }
