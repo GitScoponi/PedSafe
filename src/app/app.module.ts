@@ -6,6 +6,7 @@ import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
+
 import {
   AngularFireDatabaseModule,
   AngularFireDatabase,
@@ -14,6 +15,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { LoadPanelComponent } from './components/load-panel/load-panel.component';
+import { SharedModule } from './shared/shared.module';
 var firebaseConfig = {
   apiKey: 'AIzaSyB8HBhPPNLv0VbpXuXp8Tu2ylCeH2D22pg',
   authDomain: 'pedsafe-b44f4.firebaseapp.com',
@@ -25,7 +29,7 @@ var firebaseConfig = {
   measurementId: 'G-FJWEX1Q72M',
 };
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoadPanelComponent],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -38,6 +42,7 @@ var firebaseConfig = {
     MatInputModule,
     FormsModule,
     ReactiveFormsModule,
+    SharedModule
   ],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

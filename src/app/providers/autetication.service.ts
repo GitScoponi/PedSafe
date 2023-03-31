@@ -17,16 +17,33 @@ export class AuteticationService {
     private _db: AngularFireDatabase,
     private _fg: FgService,
     private _nav: NavController
-  ) {}
+  ) {
+    this.auth.authState.subscribe((user) => {
+      if (user) {
+        this.setUser(user);
+      } else {
+        this.setUser('null');
+      }
+    });
+  }
 
   login(Usuario: string, Senha: string) {
     return this.auth.signInWithEmailAndPassword(Usuario, Senha);
   }
+  get usuarioLogado(): boolean {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    return user !== 'null' ? true : false;
+  }
   cadastrarNovoUsuario(Email: string, Senha: string) {
     return this.auth.createUserWithEmailAndPassword(Email, Senha);
   }
-  // prettier-ignore
-  cadastrarUsuarioNoBanco(ID: string,Nome: string,Sobrenome: string,Email: string) {
+
+  cadastrarUsuarioNoBanco(
+    ID: string,
+    Nome: string,
+    Sobrenome: string,
+    Email: string
+  ) {
     return this._db
       .list('Usuarios')
       .push(
@@ -41,11 +58,11 @@ export class AuteticationService {
     return this.auth.sendPasswordResetEmail(Email);
   }
 
-  setLocalUser(Usuario: Usuario) {
-    localStorage.setItem('User', JSON.stringify(Usuario));
+  setUser(usuario: any) {
+    localStorage.setItem('user', JSON.stringify(usuario));
   }
   getUser() {
-    var user = localStorage.getItem('User');
+    var user = localStorage.getItem('user');
     if (user) {
       return JSON.parse(user);
     }
@@ -53,7 +70,8 @@ export class AuteticationService {
   }
 
   sair() {
-    this.auth.signOut();
-    localStorage.removeItem('User');
+    this.auth.signOut().then(x=>{
+ 
+    });
   }
 }

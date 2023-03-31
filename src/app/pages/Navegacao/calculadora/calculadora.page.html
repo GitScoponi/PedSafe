@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="azul">
+    <ion-buttons slot="start">
+      <ion-back-button text=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{Titulo}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="text-center mt-3">
+    <form #formulario="ngForm" class="example-form centralizar" style="width: 80%;" (ngSubmit)="calcular(formulario)">
+      <mat-form-field class="example-full-width w-100 " *ngFor="let item of dataSource ">
+        <mat-label>{{item.Titulo}}</mat-label>
+        <input type="number" matInput ngModel [name]="'var'+item.Posicao" [errorStateMatcher]="matcher" [placeholder]="item.Unidade"
+          required (ngModelChange)="mostrarResultado = false">
+      </mat-form-field>
+      <ion-button type="submit" expand="block" fill="outline" color="success">
+        Calcular
+      </ion-button>
+    </form>
+
+    <ion-card [color]="cor" *ngIf="mostrarResultado">
+      {{resultadoFinal}}
+      <ion-card-header>
+        <ion-segment scrollable (ionChange)="mudarAdministracao($event)" color="light" [value]="resultadoCalculadora">
+          <ion-segment-button value="1">
+            <ion-label>Oral</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="2">
+            <ion-label>Endovenosa</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+
+      </ion-card-header>
+      <ion-card-content>
+        <div *ngIf="resultadoCalculadora == 1" class="text-left mt-2">
+          <p> <span>Posologia:</span><br>
+            <span>Solução Oral:</span><br>
+            <span>Administracao:</span><br>
+          </p>
+          <p> <span class="mt-1">Observação</span></p>
+        </div>
+        <div *ngIf="resultadoCalculadora == 2" class="text-left  mt-2">
+          <p> <span>Posologia:</span><br>
+            <span>Diluição inicial:</span><br>
+            <span>Rediluição/Concentração final:</span><br>
+            <span>Administração:</span><br>
+            <span>Tempo:</span><br>
+          </p>
+          <p>
+            <span>Observações:</span>
+          </p>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+  <div class="text-center mt-2" *ngIf="tela == 2">
+    <app-bula [bula]="Bula" [cor]="cor"></app-bula>
+  </div>
+
+</ion-content>

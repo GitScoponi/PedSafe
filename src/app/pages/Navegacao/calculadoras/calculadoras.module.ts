@@ -8,14 +8,17 @@ import { CalculadorasPageRoutingModule } from './calculadoras-routing.module';
 
 import { CalculadorasPage } from './calculadoras.page';
 import { OrderPipe } from 'src/app/pipes/order.pipe';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    CalculadorasPageRoutingModule
+    CalculadorasPageRoutingModule,
+    SharedModule,
+    
   ],
-  declarations: [CalculadorasPage,OrderPipe]
+  declarations: [CalculadorasPage]
 })
 export class CalculadorasPageModule {}

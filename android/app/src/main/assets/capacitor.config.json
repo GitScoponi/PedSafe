@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "PedSafe",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

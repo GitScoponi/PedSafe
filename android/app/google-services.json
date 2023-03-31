@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "58442520255",
+    "firebase_url": "https://pedsafe-b44f4-default-rtdb.firebaseio.com",
+    "project_id": "pedsafe-b44f4",
+    "storage_bucket": "pedsafe-b44f4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58442520255:android:f6baef16dfe4e8e626580a",
+        "android_client_info": {
+          "package_name": "io.ionic.starter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58442520255-kfe4h70o0dvp8uvreukli1uucqt2bu2o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIARKVQ6cUi5MjXqPibrO21keDHK9vr5M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58442520255-kfe4h70o0dvp8uvreukli1uucqt2bu2o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

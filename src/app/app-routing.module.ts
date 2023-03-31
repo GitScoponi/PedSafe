@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { LoginAuthGuard } from './guards/login-auth.guard';
 
 const routes: Routes = [
   {
@@ -9,11 +10,13 @@ const routes: Routes = [
   },
   {
     path: 'calculadoras',
-    loadChildren: () => import('./pages/Navegacao/calculadoras/calculadoras.module').then( m => m.CalculadorasPageModule)
+    loadChildren: () => import('./pages/Navegacao/calculadoras/calculadoras.module').then( m => m.CalculadorasPageModule),
+    canActivate: [LoginAuthGuard],
   },
   {
     path: 'favoritos',
-    loadChildren: () => import('./pages/Navegacao/favoritos/favoritos.module').then( m => m.FavoritosPageModule)
+    loadChildren: () => import('./pages/Navegacao/favoritos/favoritos.module').then( m => m.FavoritosPageModule),
+    canActivate: [LoginAuthGuard],
   },
   {
     path: 'login',
@@ -28,9 +31,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/Navegacao/esqueceu-senha/esqueceu-senha.module').then( m => m.EsqueceuSenhaPageModule)
   },
   {
-    path: 'medicamento',
-    loadChildren: () => import('./pages/Navegacao/medicamentos/medicamentos.module').then( m => m.MedicamentosPageModule)
-  },
+    path: 'calculadora',
+    loadChildren: () => import('./pages/Navegacao/calculadora/calculadora.module').then( m => m.CalculadoraPageModule),
+    canActivate: [LoginAuthGuard],
+  }
 
 ];
 

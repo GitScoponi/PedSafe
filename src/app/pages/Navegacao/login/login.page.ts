@@ -42,7 +42,7 @@ export class LoginPage implements OnInit {
       this._auth.login(form.value.Usuario, form.value.Password).then(
         (x) => {
           if (x.user.emailVerified) {
-            this._auth.setLocalUser(
+            this._auth.setUser(
               new Usuario({ ID: x.user.uid, Email: form.value.Usuario })
             );
             this._ctrl.navigateRoot(['/calculadoras']);

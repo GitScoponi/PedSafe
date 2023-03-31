@@ -50,7 +50,7 @@ export class CadastroUsuarioPage implements OnInit {
     if (this.Formulario.valid) {
       var form = this.Formulario.value;
 
-      this._autenticao.cadastrarNovoUsuario(form.Nome, form.Sobrenome).then(
+      this._autenticao.cadastrarNovoUsuario(form.Email, form.Senha).then(
         (x) => {
           this._autenticao.cadastrarUsuarioNoBanco(
             x.user.uid,
@@ -71,12 +71,30 @@ export class CadastroUsuarioPage implements OnInit {
           );
         },
         (e) => {
+          console.log(e)
           this._fg.fbCath(e.code, e.message);
         }
       );
     }
   }
-
+  definirCor(tipo: string): string {
+    switch (tipo) {
+      case '1':
+        return 'verde';
+      case '2':
+        return 'amarelo';
+      case '3':
+        return 'laranja';
+      case '4':
+        return 'salmao';
+      case '5':
+        return 'vermelho';
+      case '6':
+        return 'azulclaro';
+      default:
+        return 'azul';
+    }
+  }
   validacao(controls: string) {
     return this.Formulario.controls[controls]?.errors;
   }
